@@ -109,10 +109,10 @@ High-level introduction to SAST and SCA concepts with the business case for "shi
 ## 🔧 Customization
 
 ### Colors
-The application uses a blue-based color scheme. To customize:
-- Primary: `#3b82f6`
-- Secondary: `#10b981`
-- Background: `#f8fafc`
+The application uses the French tricolor theme. Color scheme:
+- French Blue: `#0055A4`
+- French Red: `#EF4135`
+- White/Background: `#f8fafc`
 
 ### Content
 All content is easily editable in the `index.html` file. The structure is modular and semantic.
