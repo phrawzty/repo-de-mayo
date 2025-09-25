@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SAST & SCA Security Analysis Guide</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <i class="fas fa-shield-alt"></i>
+                <span>Security Analysis Guide</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="#overview">Overview</a></li>
+                <li><a href="#sast">SAST</a></li>
+                <li><a href="#sca">SCA</a></li>
+                <li><a href="#comparison">Comparison</a></li>
+                <li><a href="#tools">Tools</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <!-- Hero Section -->
+        <section id="hero" class="hero">
+            <div class="container">
+                <h1>Understanding SAST & SCA</h1>
+                <p class="hero-subtitle">A comprehensive guide to Static Application Security Testing and Software Composition Analysis</p>
+                <div class="hero-stats">
+                    <div class="stat">
+                        <i class="fas fa-code"></i>
+                        <span>SAST</span>
+                        <small>Analyzes your code</small>
+                    </div>
+                    <div class="stat">
+                        <i class="fas fa-cubes"></i>
+                        <span>SCA</span>
+                        <small>Manages dependencies</small>
+                    </div>
+                    <div class="stat">
+                        <i class="fas fa-arrow-left"></i>
+                        <span>Shift-Left</span>
+                        <small>Early detection</small>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Overview Section -->
+        <section id="overview" class="section">
+            <div class="container">
+                <h2>Executive Overview</h2>
+                <div class="overview-grid">
+                    <div class="overview-card">
+                        <h3>The Problem</h3>
+                        <p>Modern software development requires security to be integrated early in the development lifecycle, not as an afterthought. Traditional late-stage security audits create bottlenecks and costly fixes.</p>
+                    </div>
+                    <div class="overview-card">
+                        <h3>The Solution</h3>
+                        <p>SAST and SCA provide complementary security testing that covers both your custom code and third-party dependencies, enabling early detection and prevention of vulnerabilities.</p>
+                    </div>
+                    <div class="overview-card">
+                        <h3>The Benefit</h3>
+                        <p>By "shifting left" and implementing both tools, organizations save time and resources while building more secure applications with continuous, automated security checks.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SAST Section -->
+        <section id="sast" class="section bg-light">
+            <div class="container">
+                <h2>Static Application Security Testing (SAST)</h2>
+                <div class="sast-intro">
+                    <div class="definition-card">
+                        <h3><i class="fas fa-search-plus"></i> What is SAST?</h3>
+                        <p>SAST analyzes your application's source code, bytecode, or binary code to find security vulnerabilities <strong>without executing the program</strong>. It's "white-box" testing that examines your code from the inside out.</p>
+                    </div>
+                </div>
+
+                <div class="process-flow">
+                    <h3>How SAST Works</h3>
+                    <div class="flow-steps">
+                        <div class="step">
+                            <div class="step-number">1</div>
+                            <h4>Code Analysis</h4>
+                            <p>Parses source code, bytecode, and binary files</p>
+                        </div>
+                        <div class="step">
+                            <div class="step-number">2</div>
+                            <h4>AST Creation</h4>
+                            <p>Builds Abstract Syntax Tree for code structure</p>
+                        </div>
+                        <div class="step">
+                            <div class="step-number">3</div>
+                            <h4>Flow Analysis</h4>
+                            <p>Traces data and execution paths</p>
+                        </div>
+                        <div class="step">
+                            <div class="step-number">4</div>
+                            <h4>Taint Analysis</h4>
+                            <p>Tracks untrusted data from source to sink</p>
+                        </div>
+                        <div class="step">
+                            <div class="step-number">5</div>
+                            <h4>Report Generation</h4>
+                            <p>Provides detailed vulnerability reports</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="pros-cons">
+                    <div class="pros">
+                        <h4><i class="fas fa-check-circle"></i> Benefits</h4>
+                        <ul>
+                            <li>Early vulnerability detection</li>
+                            <li>Real-time developer feedback</li>
+                            <li>Compliance and governance support</li>
+                            <li>Integration with IDEs and CI/CD</li>
+                        </ul>
+                    </div>
+                    <div class="cons">
+                        <h4><i class="fas fa-exclamation-triangle"></i> Challenges</h4>
+                        <ul>
+                            <li>High false positive rates</li>
+                            <li>No runtime context understanding</li>
+                            <li>Can cause developer "alert fatigue"</li>
+                            <li>Limited to static code analysis</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SCA Section -->
+        <section id="sca" class="section">
+            <div class="container">
+                <h2>Software Composition Analysis (SCA)</h2>
+                <div class="sca-intro">
+                    <div class="definition-card">
+                        <h3><i class="fas fa-cubes"></i> What is SCA?</h3>
+                        <p>SCA identifies and manages <strong>open-source and third-party components</strong> in your applications. It scans dependencies against vulnerability databases and manages license compliance.</p>
+                    </div>
+                </div>
+
+                <div class="sca-focus">
+                    <h3>SCA Focus Areas</h3>
+                    <div class="focus-grid">
+                        <div class="focus-item">
+                            <i class="fas fa-bug"></i>
+                            <h4>Vulnerabilities</h4>
+                            <p>Scans components against CVE and OSV databases to identify known security flaws</p>
+                        </div>
+                        <div class="focus-item">
+                            <i class="fas fa-file-contract"></i>
+                            <h4>License Compliance</h4>
+                            <p>Identifies component licenses to ensure legal compliance and avoid liabilities</p>
+                        </div>
+                        <div class="focus-item">
+                            <i class="fas fa-link"></i>
+                            <h4>Supply Chain Integrity</h4>
+                            <p>Detects outdated dependencies, malicious packages, and typosquatting</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sbom-section">
+                    <h3>Software Bill of Materials (SBOM)</h3>
+                    <div class="sbom-card">
+                        <p>SCA generates a complete inventory of all components, versions, and licenses in your software. This SBOM provides transparency and enables effective supply chain risk management.</p>
+                    </div>
+                </div>
+
+                <div class="pros-cons">
+                    <div class="pros">
+                        <h4><i class="fas fa-check-circle"></i> Benefits</h4>
+                        <ul>
+                            <li>Supply chain attack defense</li>
+                            <li>Automated license compliance</li>
+                            <li>Continuous vulnerability monitoring</li>
+                            <li>Fast scanning (seconds)</li>
+                        </ul>
+                    </div>
+                    <div class="cons">
+                        <h4><i class="fas fa-exclamation-triangle"></i> Challenges</h4>
+                        <ul>
+                            <li>Reactive to database updates</li>
+                            <li>Zero-day vulnerability window</li>
+                            <li>Potential false negatives</li>
+                            <li>Complex dependency chains</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Comparison Section -->
+        <section id="comparison" class="section bg-light">
+            <div class="container">
+                <h2>SAST vs SCA: Complementary Approaches</h2>
+                
+                <div class="comparison-toggle">
+                    <button class="toggle-btn active" data-view="differences">Key Differences</button>
+                    <button class="toggle-btn" data-view="integration">Integration Strategy</button>
+                </div>
+
+                <div id="differences" class="comparison-view active">
+                    <div class="comparison-table">
+                        <div class="comparison-row header">
+                            <div class="aspect">Aspect</div>
+                            <div class="sast-col">SAST</div>
+                            <div class="sca-col">SCA</div>
+                        </div>
+                        <div class="comparison-row">
+                            <div class="aspect">Focus</div>
+                            <div class="sast-col">Custom/proprietary code</div>
+                            <div class="sca-col">Third-party dependencies</div>
+                        </div>
+                        <div class="comparison-row">
+                            <div class="aspect">Analysis Type</div>
+                            <div class="sast-col">White-box testing</div>
+                            <div class="sca-col">Component inventory</div>
+                        </div>
+                        <div class="comparison-row">
+                            <div class="aspect">Speed</div>
+                            <div class="sast-col">Slower (minutes)</div>
+                            <div class="sca-col">Faster (seconds)</div>
+                        </div>
+                        <div class="comparison-row">
+                            <div class="aspect">Remediation</div>
+                            <div class="sast-col">Code fixes</div>
+                            <div class="sca-col">Component updates</div>
+                        </div>
+                        <div class="comparison-row">
+                            <div class="aspect">CI/CD Placement</div>
+                            <div class="sast-col">Tiered approach</div>
+                            <div class="sca-col">Every commit</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="integration" class="comparison-view">
+                    <div class="integration-steps">
+                        <div class="integration-step">
+                            <h4>1. Define Security Foundation</h4>
+                            <p>Establish secure coding policies and compliance requirements (OWASP Top 10, GDPR, HIPAA)</p>
+                        </div>
+                        <div class="integration-step">
+                            <h4>2. Select the Right Tools</h4>
+                            <p>Choose tools that support your tech stack and integrate with existing CI/CD pipelines</p>
+                        </div>
+                        <div class="integration-step">
+                            <h4>3. Configure CI/CD Integration</h4>
+                            <p>Implement automated security checks on every commit or pull request</p>
+                        </div>
+                        <div class="integration-step">
+                            <h4>4. Baseline and Monitor</h4>
+                            <p>Conduct initial scans to identify existing issues and enable continuous monitoring</p>
+                        </div>
+                        <div class="integration-step">
+                            <h4>5. Automate Feedback</h4>
+                            <p>Provide real-time alerts and establish clear remediation processes</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Tools Section -->
+        <section id="tools" class="section">
+            <div class="container">
+                <h2>Tool Landscape</h2>
+                
+                <div class="tools-toggle">
+                    <button class="toggle-btn active" data-tool="sast-tools">SAST Tools</button>
+                    <button class="toggle-btn" data-tool="sca-tools">SCA Tools</button>
+                </div>
+
+                <div id="sast-tools" class="tools-view active">
+                    <h3>SAST Tool Comparison</h3>
+                    <div class="tools-grid">
+                        <div class="tool-card">
+                            <h4>SonarQube</h4>
+                            <div class="tool-focus">Code Quality Focus</div>
+                            <ul>
+                                <li>Developer-friendly interface</li>
+                                <li>Free community edition</li>
+                                <li>Limited security depth</li>
+                                <li>High false positive rate</li>
+                            </ul>
+                            <div class="tool-rating">
+                                <span>Best for: Getting started</span>
+                            </div>
+                        </div>
+                        <div class="tool-card">
+                            <h4>Checkmarx SAST</h4>
+                            <div class="tool-focus">Security-First</div>
+                            <ul>
+                                <li>Deep security analysis</li>
+                                <li>Wide language support</li>
+                                <li>~5% false positive rate</li>
+                                <li>Detailed attack vectors</li>
+                            </ul>
+                            <div class="tool-rating">
+                                <span>Best for: Enterprise security</span>
+                            </div>
+                        </div>
+                        <div class="tool-card">
+                            <h4>Veracode</h4>
+                            <div class="tool-focus">Compliance Focus</div>
+                            <ul>
+                                <li>Comprehensive platform</li>
+                                <li>Strong compliance features</li>
+                                <li>SaaS-only deployment</li>
+                                <li>Enterprise pricing</li>
+                            </ul>
+                            <div class="tool-rating">
+                                <span>Best for: Regulated industries</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="sca-tools" class="tools-view">
+                    <h3>SCA Tool Comparison</h3>
+                    <div class="tools-grid">
+                        <div class="tool-card">
+                            <h4>Sonatype</h4>
+                            <div class="tool-focus">Accuracy Leader</div>
+                            <ul>
+                                <li>Near-zero false positives</li>
+                                <li>Deep binary fingerprinting</li>
+                                <li>Full SBOM management</li>
+                                <li>AI model analysis</li>
+                            </ul>
+                            <div class="tool-rating">
+                                <span>Best for: Accuracy & automation</span>
+                            </div>
+                        </div>
+                        <div class="tool-card">
+                            <h4>Snyk</h4>
+                            <div class="tool-focus">Developer-First</div>
+                            <ul>
+                                <li>Developer-friendly platform</li>
+                                <li>Multiple security tools</li>
+                                <li>Data quality issues</li>
+                                <li>Partial automation</li>
+                            </ul>
+                            <div class="tool-rating">
+                                <span>Best for: Developer adoption</span>
+                            </div>
+                        </div>
+                        <div class="tool-card">
+                            <h4>JFrog</h4>
+                            <div class="tool-focus">DevOps Integration</div>
+                            <ul>
+                                <li>DevOps platform integration</li>
+                                <li>Artifact management</li>
+                                <li>High false positive rate</li>
+                                <li>Limited automation</li>
+                            </ul>
+                            <div class="tool-rating">
+                                <span>Best for: JFrog ecosystem</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Key Takeaways -->
+        <section class="section bg-light">
+            <div class="container">
+                <h2>Key Takeaways</h2>
+                <div class="takeaways-grid">
+                    <div class="takeaway">
+                        <i class="fas fa-handshake"></i>
+                        <h3>Complementary, Not Competing</h3>
+                        <p>SAST and SCA address different risks and should be used together for comprehensive security coverage.</p>
+                    </div>
+                    <div class="takeaway">
+                        <i class="fas fa-clock"></i>
+                        <h3>Early Integration Saves Time</h3>
+                        <p>Implementing both tools early in the SDLC prevents costly late-stage security fixes.</p>
+                    </div>
+                    <div class="takeaway">
+                        <i class="fas fa-layer-group"></i>
+                        <h3>Layered Security Approach</h3>
+                        <p>Neither tool is a silver bullet. Combine with DAST and other testing for complete coverage.</p>
+                    </div>
+                    <div class="takeaway">
+                        <i class="fas fa-users"></i>
+                        <h3>Culture Matters</h3>
+                        <p>Success requires fostering a security-first culture where development and security teams collaborate.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 Security Analysis Guide. Created to help understand SAST and SCA concepts.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
